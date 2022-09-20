@@ -1,11 +1,20 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
-import NextLink from 'next/link'
-import React from 'react'
-import { urlForThumbnail } from '../../utils/image'
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Rating,
+  Typography,
+} from '@mui/material';
+import NextLink from 'next/link';
+import React from 'react';
+import { urlForThumbnail } from '../../utils/image';
 
-export default function ProductItem({product}) {
+export default function ProductItem({ product }) {
   return (
-    <Card>
+    <Card className="CardItemContainer">
       <NextLink href={`/product/${product.slug.current}`} passHref>
         <CardActionArea>
           <CardMedia
@@ -15,9 +24,8 @@ export default function ProductItem({product}) {
           />
           <CardContent>
             <Typography>{product.name}</Typography>
-            <Typography>
-              {product.rating}({product.numReviews} commentaires)
-            </Typography>
+            <Rating value={product.rating} readOnly />
+            <Typography >({product.numReviews} commentaires)</Typography>
           </CardContent>
         </CardActionArea>
       </NextLink>

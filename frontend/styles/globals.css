@@ -51,16 +51,23 @@ stroke: var(--LinkColor);
 }
 
 .footer{
-  min-height: 50px;
+  min-height: 150px;
   border-top: 1px solid var( --primary-color);
   background-color: #203040;
-  color: #ffffff
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footerText{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.CardItemContainer{
+  margin-bottom: 3rem;
 }
 
 @media (prefers-color-scheme: dark) {
