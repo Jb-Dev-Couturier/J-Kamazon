@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
+import Cookies from 'js-cookie';
 import { createTheme } from '@mui/material/styles';
 import {
   AppBar,
@@ -11,11 +12,16 @@ import {
   Link,
   Toolbar,
   Typography,
+  Switch,
 } from '@mui/material';
-import {Copyright,Store} from '@mui/icons-material';
+import { Copyright, StorefrontOutlined } from '@mui/icons-material';
+
 import classes from '../utils/classes';
+import { Store } from '../utils/store';
 
 export default function Layout({ title, description, children }) {
+  const { state, dispatch } = useContext(Store);
+  const { darkMode } = state;
   const theme = createTheme({
     components: {
       MuiLink: {
@@ -37,7 +43,7 @@ export default function Layout({ title, description, children }) {
       },
     },
     palette: {
-      mode: 'light',
+      mode: darkMode ? 'dark' : 'light',
       primary: {
         main: '#f0c000',
       },
@@ -46,6 +52,14 @@ export default function Layout({ title, description, children }) {
       },
     },
   });
+
+  //darkModeChangeHandler
+  const darkModeChangeHandler=()=>{
+    dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
+    const newDarkMode = !darkMode
+    Cookies.set('darkMode', newDarkMode? "ON":"OFF")
+  }
+
   return (
     <>
       <Head>
@@ -56,13 +70,21 @@ export default function Layout({ title, description, children }) {
         <CssBaseline />
         <AppBar position="static" sx={classes.appbar}>
           <Toolbar sx={classes.toolbar}>
-            <NextLink href="/" passHref>
-              <Link>
-                <Typography sx={classes.brand} className="brandText">
-                  <Store className="iconMui" /> J&Kamazon
-                </Typography>
-              </Link>
-            </NextLink>
+            <Box display="flex" alignItems="center">
+              <NextLink href="/" passHref>
+                <Link>
+                  <Typography sx={classes.brand} className="brandText">
+                    <StorefrontOutlined className="iconMui" /> J&Kamazon
+                  </Typography>
+                </Link>
+              </NextLink>
+            </Box>
+            <Box>
+              <Switch
+                checked={darkMode}
+                onChange={darkModeChangeHandler}
+              ></Switch>
+            </Box>
           </Toolbar>
         </AppBar>
         <Container component={'main'} sx={classes.main}>
@@ -70,8 +92,8 @@ export default function Layout({ title, description, children }) {
         </Container>
         <Box component={'footer'} sx={classes.footer} className="footer">
           <Typography className="footerText">
-            Touts droits Réservés. <Copyright className="iconMui footerI" /> J&K-Web
-            2022
+            Touts droits Réservés. <Copyright className="iconMui footerI" />{' '}
+            J&K-Web 2022
           </Typography>
         </Box>
       </ThemeProvider>

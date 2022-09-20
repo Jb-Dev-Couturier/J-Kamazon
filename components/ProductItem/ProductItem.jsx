@@ -47,7 +47,7 @@ export default function ProductItem({ product }) {
           <div className="price_rating">
             <h2>{product.price} €</h2>
             <div className="rating">
-              <Rating value={product.rating} readOnly></Rating>
+              <Rating value={product.rating} readOnly className='rating'></Rating>
             </div>
           </div>
         </div>

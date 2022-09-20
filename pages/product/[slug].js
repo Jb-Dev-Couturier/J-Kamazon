@@ -15,6 +15,8 @@ import {
   Button,
 } from '@mui/material';
 
+import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
+
 import Layout from '../../components/Layout';
 import client from '../../utils/client';
 import classes from '../../utils/classes';
@@ -55,7 +57,7 @@ export default function ProductScreen(props) {
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
               <Link>
-                <Typography>Retour</Typography>
+                <Typography className='buttonRetour'> <UndoOutlinedIcon/> Retour</Typography>
               </Link>
             </NextLink>
           </Box>
