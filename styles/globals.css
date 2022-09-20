@@ -33,7 +33,7 @@ a {
 
 .iconMui{
   color: var(--third-color);
-  font-size: 3rem;
+  font-size: 3rem !important;
   margin-right: 1rem;
   stroke: var(--primary-color);
   stroke-width: 1px;
@@ -46,7 +46,7 @@ stroke: var(--LinkColor);
 }
 .footerI{
   margin: 0 .1rem;
-  font-size: 1rem;
+  font-size: 1rem !important;
 
 }
 

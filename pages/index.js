@@ -32,11 +32,9 @@ export default function Home() {
         <Alert variant="danger">{error}</Alert>
       ) : (
         <Grid container spacing={3}>
-          {products.map((product) => (
-            <Grid item md={4} key={product.slug}>
-              <Typography>
-                <ProductItem product={product}/>
-              </Typography>
+          {products.map((product, idx) => (
+            <Grid item md={4} key={idx}>
+              <ProductItem product={product}></ProductItem>
             </Grid>
           ))}
         </Grid>

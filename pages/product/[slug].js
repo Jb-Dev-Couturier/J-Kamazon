@@ -69,7 +69,7 @@ export default function ProductScreen(props) {
                 height={640}
               />
             </Grid>
-            <Grid md={3} xs={12}>
+            <Grid item md={3} xs={12}>
               <List>
                 <ListItem>
                   <Typography component="h1" variant="h1">
@@ -89,7 +89,7 @@ export default function ProductScreen(props) {
                 </ListItem>
               </List>
             </Grid>
-            <Grid md={3} xs={12}>
+            <Grid item md={3} xs={12}>
               <Card>
                 <List>
                   <ListItem>

@@ -14,18 +14,18 @@ import { urlForThumbnail } from '../../utils/image';
 
 export default function ProductItem({ product }) {
   return (
-    <Card className="CardItemContainer">
+    <Card className="CardItemContainer" key={product.slug}>
       <NextLink href={`/product/${product.slug.current}`} passHref>
         <CardActionArea>
           <CardMedia
             component="img"
             image={urlForThumbnail(product.image)}
             title={product.name}
-          />
+          ></CardMedia>
           <CardContent>
             <Typography>{product.name}</Typography>
-            <Rating value={product.rating} readOnly />
-            <Typography >({product.numReviews} commentaires)</Typography>
+            <Rating value={product.rating} readOnly></Rating>
+            <Typography>({product.numReviews} commentaires)</Typography>
           </CardContent>
         </CardActionArea>
       </NextLink>
