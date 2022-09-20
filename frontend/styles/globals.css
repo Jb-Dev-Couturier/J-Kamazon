@@ -1,7 +1,7 @@
 :root {
   --primary-color: #f0c000;
   --secondary-color: #208080;
-  --blue-color: #203040;
+  --third-color: #203040;
   --LinkColor: #ffffff;
 }
 
@@ -21,18 +21,28 @@ a {
 
 * {
   box-sizing: border-box;
+  transition: .3s all ease-in-out;
 }
 
 .brandText{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .iconMui{
-  color: #f0c000;
-  font-size: 2rem;
+  color: var(--third-color);
+  font-size: 3rem;
   margin-right: 1rem;
+  stroke: var(--primary-color);
+  stroke-width: 1px;
+  font-weight: bold;
+  
+}
+.iconMui:hover{
+color: var(--primary-color);
+stroke: var(--LinkColor);
 }
 .footerI{
   margin: 0 .1rem;
