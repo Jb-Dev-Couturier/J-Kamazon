@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #f0c000;
+  --secondary-color: #208080;
+  --blue-color: #203040;
+  --LinkColor: #ffffff;
+}
+
 html,
 body {
   padding: 0;
@@ -9,10 +16,44 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  
 }
 
 * {
   box-sizing: border-box;
+}
+
+.brandText{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconMui{
+  color: #f0c000;
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+.footerI{
+  margin: 0 .1rem;
+  font-size: 1rem;
+
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 50px;
+  border-top: 1px solid var( --primary-color);
+  background-color: #203040;
+  color: #ffffff
+}
+
+.footerText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (prefers-color-scheme: dark) {
