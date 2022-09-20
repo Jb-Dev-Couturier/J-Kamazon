@@ -8,19 +8,25 @@ export default function ProductItem({product}) {
     <Card>
       <NextLink href={`/product/${product.slug.current}`} passHref>
         <CardActionArea>
-          <CardMedia component='img' image={urlForThumbnail(product.image)} title={product.name}/>
+          <CardMedia
+            component="img"
+            image={urlForThumbnail(product.image)}
+            title={product.name}
+          />
           <CardContent>
             <Typography>{product.name}</Typography>
-            <Typography>{product.rating}({product.reviews} commentaires)</Typography>
+            <Typography>
+              {product.rating}({product.numReviews} commentaires)
+            </Typography>
           </CardContent>
         </CardActionArea>
       </NextLink>
       <CardActions>
         <Typography>{product.price} €</Typography>
-        <Button size='small' color='primary'>
+        <Button size="small" color="primary">
           Ajouter
         </Button>
       </CardActions>
     </Card>
-  )
+  );
 }
