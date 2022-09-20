@@ -1,6 +1,8 @@
 import NextLink from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useSnackbar } from 'notistack';
+import axios from 'axios';
 import {
   Box,
   Alert,
@@ -20,10 +22,16 @@ import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
 import Layout from '../../components/Layout';
 import client from '../../utils/client';
 import classes from '../../utils/classes';
-import { urlFor } from '../../utils/image';
+import { urlFor, urlForThumbnail } from '../../utils/image';
+import { Store } from '../../utils/store';
 
 export default function ProductScreen(props) {
   const { slug } = props;
+  const {
+    state: { cart },
+    dispatch,
+  } = useContext(Store);
+  const { enqueueSnackbar } = useSnackbar();
   const [state, setState] = useState({
     product: null,
     loading: true,
@@ -46,6 +54,29 @@ export default function ProductScreen(props) {
     fetchData();
   }, []);
 
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      enqueueSnackbar('Désolé. Produit épuisé', { variant: 'error' });
+      return;
+    }
+    dispatch({
+      type: 'CART_ADD_ITEM',
+      payload: {
+        _key: product._id,
+        name: product.name,
+        countInStock: product.countInStock,
+        slug: product.slug.current,
+        price: product.price,
+        image: urlForThumbnail(product.image),
+        quantity,
+      },
+    });
+    enqueueSnackbar(`${product.name} ajouté au panier`, { variant: 'success' });
+  };
+
   return (
     <Layout title={product?.title}>
       {loading ? (
@@ -57,7 +88,10 @@ export default function ProductScreen(props) {
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
               <Link>
-                <Typography className='buttonRetour'> <UndoOutlinedIcon/> Retour</Typography>
+                <Typography className="buttonRetour">
+                  {' '}
+                  <UndoOutlinedIcon /> Retour
+                </Typography>
               </Link>
             </NextLink>
           </Box>
@@ -93,7 +127,7 @@ export default function ProductScreen(props) {
               </List>
             </Grid>
             <Grid item md={3} xs={12}>
-              <Card className='CardItemDetails'>
+              <Card className="CardItemDetails">
                 <List>
                   <ListItem>
                     <Grid container>
@@ -118,7 +152,11 @@ export default function ProductScreen(props) {
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    <Button fullWidth variant="contained">
+                    <Button
+                      onClick={addToCartHandler}
+                      fullWidth
+                      variant="contained"
+                    >
                       Ajoutez au Panier
                     </Button>
                   </ListItem>
