@@ -82,6 +82,10 @@ a {
   justify-content: center;
   align-items: center;
 }
+.ContainerShadow{
+  -webkit-box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.29) !important;
+  box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.29) !important;
+}
 
 .CardItemContainer {
   width: 320px;

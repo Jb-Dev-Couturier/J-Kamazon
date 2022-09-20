@@ -1,5 +1,6 @@
 import NextLink from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
@@ -26,6 +27,7 @@ import { urlFor, urlForThumbnail } from '../../utils/image';
 import { Store } from '../../utils/store';
 
 export default function ProductScreen(props) {
+  const router = useRouter();
   const { slug } = props;
   const {
     state: { cart },
@@ -75,6 +77,7 @@ export default function ProductScreen(props) {
       },
     });
     enqueueSnackbar(`${product.name} ajouté au panier`, { variant: 'success' });
+    router.push('/cart');
   };
 
   return (
@@ -85,6 +88,9 @@ export default function ProductScreen(props) {
         <Alert variant="error">{error}</Alert>
       ) : (
         <Box>
+          <Typography component="h1" variant="h1" textAlign={'center'}>
+            DETAILS : {product.name}
+          </Typography>
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
               <Link className="buttonRetour">

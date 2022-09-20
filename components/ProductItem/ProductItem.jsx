@@ -9,7 +9,7 @@ import {
   CommentOutlined,
 } from '@mui/icons-material';
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, addToCartHandler }) {
   return (
     <Card className="CardItemContainer" key={product.slug}>
       <div className="card">
@@ -33,7 +33,7 @@ export default function ProductItem({ product }) {
               <span>Voir details</span>
             </li>
             <li>
-              <div>
+              <div onClick={() => addToCartHandler(product)}>
                 <AddShoppingCart />
                 <span>Ajouter au Panier</span>
               </div>
@@ -47,7 +47,11 @@ export default function ProductItem({ product }) {
           <div className="price_rating">
             <h2>{product.price} €</h2>
             <div className="rating">
-              <Rating value={product.rating} readOnly className='rating'></Rating>
+              <Rating
+                value={product.rating}
+                readOnly
+                className="rating"
+              ></Rating>
             </div>
           </div>
         </div>
