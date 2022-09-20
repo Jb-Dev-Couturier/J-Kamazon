@@ -51,9 +51,6 @@ stroke: var(--LinkColor);
 }
 
 .footer{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   min-height: 50px;
   border-top: 1px solid var( --primary-color);
   background-color: #203040;
