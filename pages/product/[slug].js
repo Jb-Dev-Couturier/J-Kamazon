@@ -67,6 +67,7 @@ export default function ProductScreen(props) {
                 layout="responsive"
                 width={640}
                 height={640}
+                className="imgProduct"
               />
             </Grid>
             <Grid item md={3} xs={12}>
@@ -90,7 +91,7 @@ export default function ProductScreen(props) {
               </List>
             </Grid>
             <Grid item md={3} xs={12}>
-              <Card>
+              <Card className='CardItemDetails'>
                 <List>
                   <ListItem>
                     <Grid container>

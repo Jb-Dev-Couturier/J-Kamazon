@@ -2,7 +2,9 @@
   --primary-color: #f0c000;
   --secondary-color: #208080;
   --third-color: #203040;
-  --LinkColor: #ffffff;
+  --fourth-color: #b80707;
+  --white-Color: #ffffff;
+  --background-body-Color: #dcdcdc !important;
 }
 
 html,
@@ -11,63 +13,207 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: var(--background-body-Color);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  
 }
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
-  transition: .3s all ease-in-out;
 }
 
-.brandText{
+.brandText {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 
-.iconMui{
+.iconMui {
   color: var(--third-color);
   font-size: 3rem !important;
   margin-right: 1rem;
   stroke: var(--primary-color);
   stroke-width: 1px;
   font-weight: bold;
-  
 }
-.iconMui:hover{
-color: var(--primary-color);
-stroke: var(--LinkColor);
+.iconMui:hover {
+  color: var(--primary-color);
+  stroke: var(--white-Color);
 }
-.footerI{
-  margin: 0 .1rem;
+.footerI {
+  margin: 0 0.1rem;
   font-size: 1rem !important;
-
 }
 
-.footer{
+.footer {
   min-height: 150px;
-  border-top: 1px solid var( --primary-color);
+  border-top: 1px solid var(--primary-color);
   background-color: #203040;
-  color: #ffffff;
+  color: var(--white-Color);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.footerText{
+.footerText {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.CardItemContainer{
-  margin-bottom: 3rem;
+/* CardItem */
+
+.ContainerCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CardItemContainer {
+  width: 320px;
+  -webkit-box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.29) !important;
+  box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.29) !important;
+}
+
+.CardItemContainer .card {
+  background: var(--white-Color);
+  width: 100%;
+}
+
+.CardItemContainer .card .imgBx {
+  position: relative;
+  width: 100%;
+  height: 310px;
+  overflow: hidden;
+}
+.CardItemContainer .card .imgBx img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  transition: 0.5s ease-in-out;
+  transform-origin: right;
+}
+
+.CardItemContainer .card:hover .imgBx img {
+  transform: scale(1.5);
+}
+
+.action {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.action li {
+  position: relative;
+  list-style: none;
+  width: 40px;
+  height: 40px;
+  background: var(--white-Color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid var(--third-color);
+  transition: all 0.5s;
+  transform: translateX(60px);
+}
+
+.CardItemContainer .card:hover .action li {
+  transform: translateX(0px);
+}
+
+.action li:nth-child(1) {
+  padding-top: 5px;
+  color: var(--primary-color);
+}
+.action li:nth-child(2) {
+  color: var(--secondary-color);
+  transition-delay: 0.15s;
+}
+.action li:nth-child(3) {
+  color: var(--secondary-color);
+  padding-top: 5px;
+  transition-delay: 0.3s;
+}
+
+.action li:hover {
+  background: var(--primary-color);
+  color: var(--white-Color);
+}
+
+.action li span {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-20px);
+  white-space: nowrap;
+  padding: 4px 6px;
+  background: var(--white-Color);
+  color: var(--third-color);
+  border: 1px solid var(--third-color);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.action li:hover span {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0px);
+}
+
+.action li span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--white-Color);
+  border-right: 1px solid var(--third-color);
+  border-top: 1px solid var(--third-color);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.CardItemContainer .card .contentCard {
+  padding: 0 10px;
+  padding-bottom: 10px;
+  pointer-events: none;
+}
+
+.CardItemContainer .card .contentCard .productName h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--secondary-color);
+  margin: 5px 0;
+}
+
+.CardItemContainer .card .contentCard .price_rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.CardItemContainer .card .contentCard .price_rating h2 {
+  font-size: 20px;
+  color: var(--fourth-color);
+  font-weight: 500;
+}
+
+/* CardItem old*/
+.CardItemDetails {
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.54);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.54);
 }
 
 @media (prefers-color-scheme: dark) {
