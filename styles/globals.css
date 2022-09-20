@@ -28,7 +28,12 @@ a {
 
 .buttonRetour{
   display: flex;
-  
+  font-size: 3rem !important;
+  color: var(--third-color);
+  transition: .3s all ease-in-out !important;
+}
+.buttonRetour:hover{
+  color: var(--primary-color);
 }
 
 .brandText {

@@ -87,11 +87,8 @@ export default function ProductScreen(props) {
         <Box>
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
-              <Link>
-                <Typography className="buttonRetour">
-                  {' '}
-                  <UndoOutlinedIcon /> Retour
-                </Typography>
+              <Link className="buttonRetour">
+                <UndoOutlinedIcon className="buttonRetour" />
               </Link>
             </NextLink>
           </Box>
