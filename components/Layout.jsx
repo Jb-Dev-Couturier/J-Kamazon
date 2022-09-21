@@ -1,8 +1,8 @@
+import { createTheme } from '@mui/material/styles';
 import React, { useContext, useState } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import Cookies from 'js-cookie';
-import { createTheme } from '@mui/material/styles';
 import {
   AppBar,
   Box,
@@ -23,6 +23,7 @@ import {
   StorefrontOutlined,
   LoginOutlined,
   LogoutOutlined,
+  ManageAccountsOutlined,
 } from '@mui/icons-material';
 
 import { ShoppingCartOutlined } from '@mui/icons-material';
@@ -32,7 +33,7 @@ import { Store } from '../utils/store';
 import { useRouter } from 'next/router';
 
 export default function Layout({ title, description, children }) {
-  const router = useRouter()
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { darkMode, cart, userInfo } = state;
   const theme = createTheme({
@@ -76,26 +77,26 @@ export default function Layout({ title, description, children }) {
     Cookies.set('darkMode', newDarkMode ? 'ON' : 'OFF');
   };
 
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const loginMenuCloseHandler = (e, redirect)=>{
-    setAnchorEl(null)
-    if(redirect){
-      router.push(redirect)
-    }
-  }
-
-  const loginClickHandler= (e) =>{
-    setAnchorEl(e.currentTarget);
-  }
-
-  const logoutClickHandler=()=>{
+  const loginMenuCloseHandler = (e, redirect) => {
     setAnchorEl(null);
-    dispatch({type: 'USER_LOGOUT'})
-    Cookies.remove('userInfo')
-    Cookies.remove('cartItems')
-    router.push('/')
-  }
+    if (redirect) {
+      router.push(redirect);
+    }
+  };
+
+  const loginClickHandler = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const logoutClickHandler = () => {
+    setAnchorEl(null);
+    dispatch({ type: 'USER_LOGOUT' });
+    Cookies.remove('userInfo');
+    Cookies.remove('cartItems');
+    router.push('/');
+  };
 
   return (
     <>
@@ -154,21 +155,19 @@ export default function Layout({ title, description, children }) {
                     open={Boolean(anchorEl)}
                     onClose={loginMenuCloseHandler}
                   >
-                    <MenuItem onClick={(e)=>loginMenuCloseHandler(e,'/profile')}>
-                      Profile
+                    <MenuItem
+                      onClick={(e) => loginMenuCloseHandler(e, '/profile')}
+                    >
+                      <ManageAccountsOutlined />
+                      {''}
+                      {''}Profile
                     </MenuItem>
                     <MenuItem onClick={logoutClickHandler}>
-                      LogOut
+                      <LogoutOutlined />
+                      {''}
+                      {''}LogOut
                     </MenuItem>
                   </Menu>
-                  {/* <NextLink href={'/profile'}>
-                    <Link>{userInfo.name}</Link>
-                  </NextLink>
-                  <NextLink href={'/login'}>
-                    <Link>
-                      <LogoutOutlined className="cartI alt" />
-                    </Link>
-                  </NextLink> */}
                 </>
               ) : (
                 <NextLink href={'/login'}>
@@ -177,6 +176,7 @@ export default function Layout({ title, description, children }) {
                   </Link>
                 </NextLink>
               )}
+              
             </Box>
           </Toolbar>
         </AppBar>

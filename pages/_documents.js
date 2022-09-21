@@ -3,6 +3,7 @@ import Document, { Head, Html, Main, NextScript } from 'next/document';
 import CreateEmotionServer from '@emotion/server/create-instance';
 import createCache from '@emotion/cache';
 
+
 export default class MyDocument extends Document {
   render() {
     return (
@@ -31,20 +32,20 @@ MyDocument.getInitialProps = async (ctx) => {
       //eslint-disable-next-line react/display-name
       enhanceApp: (App) => (props) => <App emotionCache={cache} {...props} />,
     });
-  const InitialProps = await Document.getInitialProps(ctx);
-  const emotionStyles = extractCriticalToChunks(InitialProps.html);
+  const initialProps = await Document.getInitialProps(ctx);
+  const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
     <style
       data-emotion={`${style.key} ${style.ids.join('')}`}
       key={style.key}
-      //eslint-disable-next-line react/no-danger
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
   ));
   return {
-    ...InitialProps,
+    ...initialProps,
     styles: [
-      ...React.Children.toArray(InitialProps.styles),
+      ...React.Children.toArray(initialProps.styles),
       ...emotionStyleTags,
     ],
   };
