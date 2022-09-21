@@ -30,7 +30,7 @@ const classes = {
   },
   navbarButton: {
     color: '#ffffff',
-    textTransform: 'initial',
+    textTransform: 'capitalize',
   },
   fullWidth: {
     width: '100%',

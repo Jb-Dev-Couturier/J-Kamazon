@@ -6,21 +6,49 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import NextLink from 'next/link';
 
 import Form from '../components/Form';
 import Layout from '../components/Layout';
+import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import { Store } from '../utils/store';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import { getError } from '../utils/error';
 
 export default function LoginScreen() {
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  const { enqueueSnackbar } = useSnackbar();
+  const router = useRouter();
+
+    useEffect(() => {
+      if (userInfo) {
+        router.push('/');
+      }
+    }, [router, userInfo]);
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
 
-  const submitHandler = ({email, password}) => {};
+  const submitHandler = async ({ email, password }) => {
+    try {
+      const { data } = await axios.post('/api/users/login', {
+        email,
+        password,
+      });
+      dispatch({ type: 'USER_LOGIN', payload: data });
+      Cookies.set('userInfo', JSON.stringify(data));
+      router.push('/');
+    } catch (err) {
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
 
   return (
     <Layout title="Page de connexion">

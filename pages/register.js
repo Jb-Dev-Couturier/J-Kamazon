@@ -17,29 +17,25 @@ import Cookies from 'js-cookie';
 import Form from '../components/Form';
 import Layout from '../components/Layout';
 import { Store } from '../utils/store';
-
+import { getError } from '../utils/error';
 
 export default function RegisterScreen() {
-  const {state,dispatch}=useContext(Store)
-  const {userInfo}= state
-  const router = useRouter()
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
-  
+
   useEffect(() => {
-    if(userInfo){
-      router.push('/')
+    if (userInfo) {
+      router.push('/');
     }
-  }, [router,userInfo])
-  
+  }, [router, userInfo]);
+
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
-
-  
-  
-
 
   const submitHandler = async ({ name, email, password, confirmPassword }) => {
     if (password !== confirmPassword) {
@@ -49,14 +45,16 @@ export default function RegisterScreen() {
       return;
     }
     try {
-      const {data}= await axios.post('/api/users/register',{
-        name, email ,password
-      })
-      dispatch({type:'USER_LOGIN', payload:data})
-      Cookies.set('userInfo', JSON.stringify(data))
-      router.push('/')
+      const { data } = await axios.post('/api/users/register', {
+        name,
+        email,
+        password,
+      });
+      dispatch({ type: 'USER_LOGIN', payload: data });
+      Cookies.set('userInfo', JSON.stringify(data));
+      router.push('/');
     } catch (err) {
-      enqueueSnackbar(err.message, { variant: 'error' });
+      enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
 
