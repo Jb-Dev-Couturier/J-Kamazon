@@ -13,15 +13,18 @@ import {
   Toolbar,
   Typography,
   Switch,
+  Badge,
 } from '@mui/material';
 import { Copyright, StorefrontOutlined } from '@mui/icons-material';
+
+import {ShoppingCartOutlined} from '@mui/icons-material';
 
 import classes from '../utils/classes';
 import { Store } from '../utils/store';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
-  const { darkMode } = state;
+  const { darkMode, cart } = state;
   const theme = createTheme({
     components: {
       MuiLink: {
@@ -49,6 +52,9 @@ export default function Layout({ title, description, children }) {
       },
       secondary: {
         main: '#208080',
+      },
+      tertiary: {
+        main: '#b80707',
       },
     },
   });
@@ -84,6 +90,22 @@ export default function Layout({ title, description, children }) {
                 checked={darkMode}
                 onChange={darkModeChangeHandler}
               ></Switch>
+              <NextLink href="../cart" passHref>
+                <Link>
+                  <Typography component={'span'}>
+                    {cart.cartItems.length > 0 ? (
+                      <Badge
+                        color="tertiary"
+                        badgeContent={cart.cartItems.length}
+                      >
+                        <ShoppingCartOutlined className="cartI" />
+                      </Badge>
+                    ) : (
+                      <ShoppingCartOutlined className="cartI alt" />
+                    )}
+                  </Typography>
+                </Link>
+              </NextLink>
             </Box>
           </Toolbar>
         </AppBar>

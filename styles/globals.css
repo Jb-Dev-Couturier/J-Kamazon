@@ -55,9 +55,26 @@ a {
   stroke: var(--white-Color);
 }
 .footerI {
+  
   margin: 0 0.1rem;
   font-size: 1rem !important;
 }
+
+.cartI{
+  color: var(--white-Color);
+  font-size: 2rem !important;
+  margin: 0;
+}
+.alt{
+  color: var(--white-Color);
+  font-size: 2rem !important;
+  transform: translateY(7px);
+}
+
+.cartI:hover{
+  color: var(--primary-color);
+}
+
 
 .footer {
   min-height: 150px;
