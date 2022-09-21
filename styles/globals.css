@@ -64,6 +64,7 @@ a {
   color: var(--white-Color);
   font-size: 2rem !important;
   margin: 0;
+  cursor: pointer;
 }
 .alt{
   color: var(--white-Color);

@@ -81,7 +81,7 @@ export default function ProductScreen(props) {
   };
 
   return (
-    <Layout title={product?.title}>
+    <Layout title={product?.name}>
       {loading ? (
         <CircularProgress />
       ) : error ? (

@@ -62,7 +62,7 @@ export default function Home() {
     };
 
   return (
-    <Layout>
+    <Layout title={"Accueil"}>
       <Typography component="h1" variant="h1" textAlign={'center'}>
         VOTRE MAGASIN J&KAMAZON
       </Typography>

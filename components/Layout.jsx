@@ -15,7 +15,11 @@ import {
   Switch,
   Badge,
 } from '@mui/material';
-import { Copyright, StorefrontOutlined } from '@mui/icons-material';
+import {
+  Copyright,
+  StorefrontOutlined,
+  LoginOutlined,
+} from '@mui/icons-material';
 
 import {ShoppingCartOutlined} from '@mui/icons-material';
 
@@ -104,6 +108,11 @@ export default function Layout({ title, description, children }) {
                       <ShoppingCartOutlined className="cartI alt" />
                     )}
                   </Typography>
+                </Link>
+              </NextLink>
+              <NextLink href={'/login'}>
+                <Link>
+                  <LoginOutlined className="cartI alt" />
                 </Link>
               </NextLink>
             </Box>
