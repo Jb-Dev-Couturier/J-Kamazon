@@ -72,8 +72,16 @@ a {
   transform: translateY(7px);
 }
 
+
 .cartI:hover{
   color: var(--primary-color);
+}
+
+.userConnectedName{
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  margin: 1rem;
+  cursor: pointer;
 }
 
 

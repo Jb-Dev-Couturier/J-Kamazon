@@ -19,16 +19,17 @@ import {
   Copyright,
   StorefrontOutlined,
   LoginOutlined,
+  LogoutOutlined,
 } from '@mui/icons-material';
 
-import {ShoppingCartOutlined} from '@mui/icons-material';
+import { ShoppingCartOutlined } from '@mui/icons-material';
 
 import classes from '../utils/classes';
 import { Store } from '../utils/store';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
-  const { darkMode, cart } = state;
+  const { darkMode, cart, userInfo } = state;
   const theme = createTheme({
     components: {
       MuiLink: {
@@ -64,11 +65,11 @@ export default function Layout({ title, description, children }) {
   });
 
   //darkModeChangeHandler
-  const darkModeChangeHandler=()=>{
+  const darkModeChangeHandler = () => {
     dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
-    const newDarkMode = !darkMode
-    Cookies.set('darkMode', newDarkMode? "ON":"OFF")
-  }
+    const newDarkMode = !darkMode;
+    Cookies.set('darkMode', newDarkMode ? 'ON' : 'OFF');
+  };
 
   return (
     <>
@@ -110,11 +111,28 @@ export default function Layout({ title, description, children }) {
                   </Typography>
                 </Link>
               </NextLink>
-              <NextLink href={'/login'}>
-                <Link>
-                  <LoginOutlined className="cartI alt" />
-                </Link>
-              </NextLink>
+              {userInfo ? (
+                <>
+                  <NextLink href={'/profile'}>
+                    <Link>
+                      <span className="userConnectedName">{userInfo.name}</span>
+                    </Link>
+                  </NextLink>
+                  <NextLink href={'/login'}>
+                    <Link>
+                      <span className="userConnectedName">
+                        <LogoutOutlined className="cartI alt" />
+                      </span>
+                    </Link>
+                  </NextLink>
+                </>
+              ) : (
+                <NextLink href={'/login'}>
+                  <Link>
+                    <LoginOutlined className="cartI alt" />
+                  </Link>
+                </NextLink>
+              )}
             </Box>
           </Toolbar>
         </AppBar>

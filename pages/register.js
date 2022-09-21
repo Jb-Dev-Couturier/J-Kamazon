@@ -6,21 +6,59 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import Form from '../components/Form';
 import Layout from '../components/Layout';
+import { Store } from '../utils/store';
+
 
 export default function RegisterScreen() {
+  const {state,dispatch}=useContext(Store)
+  const {userInfo}= state
+  const router = useRouter()
+  const { enqueueSnackbar } = useSnackbar();
+  
+  useEffect(() => {
+    if(userInfo){
+      router.push('/')
+    }
+  }, [router,userInfo])
+  
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
 
-  const submitHandler = ({name,email, password, confirmPassword}) => {};
+  
+  
+
+
+  const submitHandler = async ({ name, email, password, confirmPassword }) => {
+    if (password !== confirmPassword) {
+      enqueueSnackbar('Les mots de passe ne correspondent pas', {
+        variant: 'error',
+      });
+      return;
+    }
+    try {
+      const {data}= await axios.post('/api/users/register',{
+        name, email ,password
+      })
+      dispatch({type:'USER_LOGIN', payload:data})
+      Cookies.set('userInfo', JSON.stringify(data))
+      router.push('/')
+    } catch (err) {
+      enqueueSnackbar(err.message, { variant: 'error' });
+    }
+  };
 
   return (
     <Layout title="Page d'inscription">
