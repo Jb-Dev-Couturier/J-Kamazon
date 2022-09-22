@@ -26,8 +26,10 @@ import Layout from '../components/Layout';
 import { DeleteOutlineOutlined, CancelOutlined } from '@mui/icons-material';
 import { Store } from '../utils/store';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 function CartScreen() {
+  const router = useRouter()
   const {
     state: {
       cart: { cartItems },
@@ -159,7 +161,14 @@ function CartScreen() {
                   </Typography>
                 </ListItem>
                 <ListItem>
-                  <Button fullWidth color="primary" variant="contained">
+                  <Button
+                    fullWidth
+                    color="primary"
+                    variant="contained"
+                    onClick={() => {
+                      router.push('/shipping');
+                    }}
+                  >
                     Regler
                   </Button>
                 </ListItem>

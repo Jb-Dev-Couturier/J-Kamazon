@@ -24,12 +24,13 @@ export default function LoginScreen() {
   const { userInfo } = state;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
+  const {redirect}= router.query
 
     useEffect(() => {
       if (userInfo) {
-        router.push('/');
+        router.push(redirect || '/');
       }
-    }, [router, userInfo]);
+    }, [router, userInfo, redirect]);
   const {
     handleSubmit,
     control,
@@ -44,7 +45,7 @@ export default function LoginScreen() {
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
       Cookies.set('userInfo', JSON.stringify(data));
-      router.push('/');
+      router.push(redirect || '/');
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
@@ -122,7 +123,7 @@ export default function LoginScreen() {
           </ListItem>
           <ListItem>
             Vous n'avez pas de comptes?{' '}
-            <NextLink href={'/register'} passHref>
+            <NextLink href={`'/register?redirect=${redirect || '/'}`} passHref>
               <Link> Cliquez Ici ?</Link>
             </NextLink>
           </ListItem>
