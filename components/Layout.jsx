@@ -96,6 +96,7 @@ export default function Layout({ title, description, children }) {
     Cookies.remove('userInfo');
     Cookies.remove('cartItems');
     Cookies.remove('shippingAdress');
+    Cookies.remove('paymentMethod');
     router.push('/');
   };
 
@@ -123,18 +124,18 @@ export default function Layout({ title, description, children }) {
                 checked={darkMode}
                 onChange={darkModeChangeHandler}
               ></Switch>
-              <NextLink href="../cart" passHref>
+              <NextLink href="/cart" passHref>
                 <Link>
-                  <Typography component={'span'}>
+                  <Typography component="span">
                     {cart.cartItems.length > 0 ? (
                       <Badge
-                        color="tertiary"
+                        color="secondary"
                         badgeContent={cart.cartItems.length}
                       >
-                        <ShoppingCartOutlined className="cartI" />
+                        Cart
                       </Badge>
                     ) : (
-                      <ShoppingCartOutlined className="cartI alt" />
+                      'Cart'
                     )}
                   </Typography>
                 </Link>
@@ -159,25 +160,23 @@ export default function Layout({ title, description, children }) {
                     <MenuItem
                       onClick={(e) => loginMenuCloseHandler(e, '/profile')}
                     >
-                      <ManageAccountsOutlined />
-                      {''}
-                      {''}Profile
+                      Profile
                     </MenuItem>
-                    <MenuItem onClick={logoutClickHandler}>
-                      <LogoutOutlined />
-                      {''}
-                      {''}LogOut
+                    <MenuItem
+                      onClick={(e) =>
+                        loginMenuCloseHandler(e, '/order-history')
+                      }
+                    >
+                      Order History
                     </MenuItem>
+                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                   </Menu>
                 </>
               ) : (
-                <NextLink href={'/login'}>
-                  <Link>
-                    <LoginOutlined className="cartI alt" />
-                  </Link>
+                <NextLink href="/login" passHref>
+                  <Link>Login</Link>
                 </NextLink>
               )}
-              
             </Box>
           </Toolbar>
         </AppBar>
