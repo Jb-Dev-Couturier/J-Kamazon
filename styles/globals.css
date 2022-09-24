@@ -83,6 +83,20 @@ a {
   margin: 1rem;
   cursor: pointer;
 }
+.MenuUser{
+  transform: translateX(25px);
+}
+
+.iconMenuUser{
+  margin:0 .5rem;
+  font-size: 30px !important;
+}
+.iconMenuUser:hover{
+  color: var(--primary-color);
+  transform: scale(1.5);
+  transition: .3s all ease-in-out;
+}
+
 
 
 .footer {

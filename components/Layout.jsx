@@ -24,9 +24,9 @@ import {
   LoginOutlined,
   LogoutOutlined,
   ManageAccountsOutlined,
+  ShoppingCartOutlined,
+  HistoryEduOutlined,
 } from '@mui/icons-material';
-
-import { ShoppingCartOutlined } from '@mui/icons-material';
 
 import classes from '../utils/classes';
 import { Store } from '../utils/store';
@@ -132,10 +132,10 @@ export default function Layout({ title, description, children }) {
                         color="secondary"
                         badgeContent={cart.cartItems.length}
                       >
-                        Cart
+                        <ShoppingCartOutlined className="cartI" />
                       </Badge>
                     ) : (
-                      'Cart'
+                      <ShoppingCartOutlined className="cartI alt" />
                     )}
                   </Typography>
                 </Link>
@@ -147,6 +147,7 @@ export default function Layout({ title, description, children }) {
                     aria-haspopup="true"
                     sx={classes.navbarButton}
                     onClick={loginClickHandler}
+                    className="userConnectedName"
                   >
                     {userInfo.name}
                   </Button>
@@ -156,25 +157,30 @@ export default function Layout({ title, description, children }) {
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={loginMenuCloseHandler}
+                    className="MenuUser"
                   >
                     <MenuItem
                       onClick={(e) => loginMenuCloseHandler(e, '/profile')}
                     >
-                      Profile
+                      <ManageAccountsOutlined className="iconMenuUser" />{' '}
                     </MenuItem>
                     <MenuItem
                       onClick={(e) =>
                         loginMenuCloseHandler(e, '/order-history')
                       }
                     >
-                      Order History
+                      <HistoryEduOutlined className="iconMenuUser" />
                     </MenuItem>
-                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
+                    <MenuItem onClick={logoutClickHandler}>
+                      <LogoutOutlined className="iconMenuUser" />{' '}
+                    </MenuItem>
                   </Menu>
                 </>
               ) : (
                 <NextLink href="/login" passHref>
-                  <Link>Login</Link>
+                  <Link>
+                    <LoginOutlined className="cartI alt" />
+                  </Link>
                 </NextLink>
               )}
             </Box>

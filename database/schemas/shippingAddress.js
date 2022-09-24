@@ -4,27 +4,27 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'fullName',
+      title: 'Nom Prenom',
       name: 'fullName',
       type: 'string',
     },
     {
-      title: 'address',
+      title: 'Adresse',
       name: 'address',
       type: 'string',
     },
     {
-      title: 'city',
+      title: 'Ville',
       name: 'city',
       type: 'string',
     },
     {
-      title: 'postalCode',
+      title: 'Code Postale',
       name: 'postalCode',
       type: 'string',
     },
     {
-      title: 'country',
+      title: 'Pays',
       name: 'country',
       type: 'string',
     },

@@ -29,7 +29,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 function CartScreen() {
-  const router = useRouter()
+  const router = useRouter();
   const {
     state: {
       cart: { cartItems },

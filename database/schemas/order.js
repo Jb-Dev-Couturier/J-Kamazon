@@ -4,7 +4,7 @@ export default {
   type: 'document',
   fields: [
     {
-      title: 'User',
+      title: 'Utilisateur',
       name: 'user',
       type: 'reference',
       to: [{ type: 'user' }],
@@ -14,72 +14,72 @@ export default {
     },
     {
       name: 'userName',
-      title: 'User Name',
+      title: 'Nom utilisateur',
       type: 'string',
     },
     {
       name: 'itemsPrice',
-      title: 'itemsPrice',
+      title: 'Prix Article',
       type: 'number',
     },
     {
       name: 'shippingPrice',
-      title: 'shippingPrice',
+      title: 'Prix Livraison',
       type: 'number',
     },
     {
       name: 'taxPrice',
-      title: 'taxPrice',
+      title: 'Taxe',
       type: 'number',
     },
     {
       name: 'totalPrice',
-      title: 'totalPrice',
+      title: 'Prix Total',
       type: 'number',
     },
     {
       name: 'paymentMethod',
-      title: 'paymentMethod',
+      title: 'Moyen de paiment',
       type: 'string',
     },
     {
-      title: 'shippingAddress',
+      title: 'Adresse de livraison',
       name: 'shippingAddress',
       type: 'shippingAddress',
     },
     {
-      title: 'paymentResult',
+      title: 'Paiment',
       name: 'paymentResult',
       type: 'paymentResult',
     },
     {
-      title: 'Order Items',
+      title: 'Articles Commandées',
       name: 'orderItems',
       type: 'array',
       of: [
         {
-          title: 'Order Item',
+          title: 'Article',
           type: 'orderItem',
         },
       ],
     },
     {
-      title: 'IsPaid',
+      title: 'Payer',
       name: 'isPaid',
       type: 'boolean',
     },
     {
-      title: 'Paid Date',
+      title: 'Date Paiments',
       name: 'paidAt',
       type: 'datetime',
     },
     {
-      title: 'IsDelivered',
+      title: 'Livrer',
       name: 'isDelivered',
       type: 'boolean',
     },
     {
-      title: 'DeliveredAt',
+      title: 'Date de livraison',
       name: 'deliveredAt',
       type: 'datetime',
     },

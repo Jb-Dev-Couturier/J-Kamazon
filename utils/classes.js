@@ -31,6 +31,8 @@ const classes = {
   navbarButton: {
     color: '#ffffff',
     textTransform: 'capitalize',
+    fontSize: '1.1rem',
+    margin:'1rem'
   },
   fullWidth: {
     width: '100%',
