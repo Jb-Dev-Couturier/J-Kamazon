@@ -28,7 +28,7 @@ export default function RegisterScreen() {
 
   useEffect(() => {
     if (userInfo) {
-      router.push(redirect|| '/');
+      router.push(redirect || '/');
     }
   }, [router, userInfo, redirect]);
 
@@ -53,7 +53,7 @@ export default function RegisterScreen() {
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
       Cookies.set('userInfo', JSON.stringify(data));
-      router.push(redirect|| '/');
+      router.push(redirect || '/');
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }

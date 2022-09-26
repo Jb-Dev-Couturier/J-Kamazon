@@ -24,13 +24,13 @@ export default function LoginScreen() {
   const { userInfo } = state;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const {redirect}= router.query
+  const { redirect } = router.query;
 
-    useEffect(() => {
-      if (userInfo) {
-        router.push(redirect || '/');
-      }
-    }, [router, userInfo, redirect]);
+  useEffect(() => {
+    if (userInfo) {
+      router.push(redirect || '/');
+    }
+  }, [router, userInfo, redirect]);
   const {
     handleSubmit,
     control,
@@ -122,7 +122,7 @@ export default function LoginScreen() {
             </Button>
           </ListItem>
           <ListItem>
-            Vous n'avez pas de comptes?{' '}
+            Vous n'avez pas de comptes?
             <NextLink href={`'/register?redirect=${redirect || '/'}`} passHref>
               <Link> Cliquez Ici ?</Link>
             </NextLink>
