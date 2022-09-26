@@ -214,8 +214,8 @@ export default function SearchScreen() {
         <Grid item md={9}>
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item>
-              {products && products.length !== 0 ? products.length : 'Non'}{' '}
-              Results
+              {products && products.length !== 0 ? products.length : 'Pas de'}{' '}
+              Resultats
               {query !== 'tout' && query !== '' && ' : ' + query}
               {price !== 'tout' && ' : Prix ' + price}
               {rating !== 'tout' && ' : Notes ' + rating + ' & up'}
