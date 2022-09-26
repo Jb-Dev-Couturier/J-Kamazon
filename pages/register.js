@@ -184,7 +184,7 @@ export default function RegisterScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              S'enregistrer
+              S'enregistrer{' '}
             </Button>
           </ListItem>
           <ListItem>

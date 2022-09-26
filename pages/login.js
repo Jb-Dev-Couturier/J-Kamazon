@@ -122,7 +122,7 @@ export default function LoginScreen() {
             </Button>
           </ListItem>
           <ListItem>
-            Vous n'avez pas de comptes?
+            Vous n'avez pas de comptes?{' '}
             <NextLink href={`'/register?redirect=${redirect || '/'}`} passHref>
               <Link> Cliquez Ici ?</Link>
             </NextLink>
