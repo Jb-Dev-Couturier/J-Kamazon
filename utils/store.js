@@ -83,7 +83,7 @@ function reducer(state, action) {
       return state;
   }
 }
-
+//storeProvider
 export function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
